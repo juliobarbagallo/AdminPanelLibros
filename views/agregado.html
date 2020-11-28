@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregado</title>
+    <link rel="stylesheet" href="/public/estilos.css">
+</head>
+<body>  
+{% if mensaje %}
+    <div>
+        <h2><a href="/">Volver</a></h2>
+    </div> 
+    <h1>{{mensaje}}</h1>
+{% else %}
+    
+    <h2><a href="/">Volver</a></h2>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/estilos.css">
+</head>
+<body>
+
+{% if logeado and admin %}
+    <h1>Bienvenido {{usuario}}</h1> 
+    <form action="/agregalibro" method="post">
+        <label for="titulo">Titulo</label>
+        <input type="text" name="title" placeholder="Titulo..." required>
+        <label for="isbn">ISBN</label>
+        <input type="text" name="isbn" placeholder="ISBN..." required>
+        <label for="pageCount">Cantidad de paginas</label>
+        <input type="number" name="pageCount" placeholder="Cantidad de paginas...">
+        <label for="language">Idioma</label>
+        <input type="text" name="language" placeholder="Idioma...">
+        <label for="publishDate">Fecha de publicacion</label>
+        <input type="date" name="publishDate" id="">
+        <label for="thumbnailUrl">Portada</label>
+        <input type="text" name="thumbnailUrl" placeholder="URL de la portada...">
+        <label for="description">Descripcion</label>
+        <textarea name="description" id="" cols="30" rows="10"></textarea>
+        <label for="pais">Pais</label>
+        <input type="text" name="pais" placeholder="Pais...">
+        <label for="editorial">Editorial</label>
+        <input type="text" name="editorial" placeholder="Editorial">
+        <input type="submit" value="Agregar">
+    </form>
+    <h2><a href="/logout">Logout</a></h2>
+{% elif logeado %}
+    <h1>Bienvenido {{usuario}}</h1> 
+    
+    <h2><a href="/logout">Logout</a></h2>
+{% else %}
+    <h1>Login</h1>    
+    <form action="/login" method="post">
+    <label>Usuario</label>
+    <input type="text" name="usuario" placeholder="Usuario..." required>
+    <label>Password</label>
+    <input type="password" name="contrasenia" placeholder="Password..." required>
+    <input type="submit" value="Login">
+    </form>
+{% endif %}    
+</body>
+</html>

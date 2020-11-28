@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Producto</title>
+    <link rel="stylesheet" href="/public/estilos.css">
+</head>
+<body>
+<div id="home">
+<h2><a href="/">🏠</a></h2>
+</div>   
+{% if log %}
+<h1>Agregar platos al menu</h1>    
+<form action="/add" method="post" id="alta">
+        <label>Plato</label>
+        <input type="text" name="plato" required>
+        <label>Precio</label>
+        <input type="number" name="precio" required min="1" pattern="(\d)">
+        <label>Descripción</label>
+        <input type="text" name="descripcion" required>
+        <label>Categoría</label>
+        <select name="categoria">
+       {{select}}    
+        </select>
+        <input type="submit" value="Agregar">
+</form>
+<h2><a href="/logout">LOGOUT</a></h2>
+{% else %}
+<h1>Login</h1>    
+<form action="/alta" method="post">
+<label>Usuario</label>
+<input type="text" name="user" placeholder="Usuario..." required>
+<label>Password</label>
+<input type="password" name="pass" placeholder="Password..." required>
+<input type="submit" value="Login">
+</form>
+{% endif %}    
+</body>
+</html>
