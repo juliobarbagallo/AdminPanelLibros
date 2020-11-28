@@ -9,6 +9,7 @@
 <body>
 
 {% if logeado and admin %}
+    {% include "header.html" %}
     <h1>Bienvenido {{usuario}}</h1> 
     <form action="/agregalibro" method="post">
         <label for="titulo">Titulo</label>
@@ -33,6 +34,7 @@
     </form>
     <h2><a href="/logout">Logout</a></h2>
 {% elif logeado %}
+    {% include "header.html" %}
     <h1>Bienvenido {{usuario}}</h1> 
     
     <h2><a href="/logout">Logout</a></h2>

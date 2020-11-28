@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/estilos.css">
+</head>
+<body>
+
+{% if logeado or admin %}
+    {% include "header.html" %}
+    {% if termino.length > 0 %}
+    <h1>Resultados de búsqueda de libros para el titulo: <strong>{{termino}}</strong></h1>
+    <ul>
+        {% for libro in data %}
+          <li><a href="/libro/{{libro.isbn}}">{{ libro.title }}</a></li>
+        {% endfor %}
+    </ul>    
+    {% endif %}
+    <h2><a href="/logout">Logout</a></h2>
+{% else %}
+    <h1>Login</h1>    
+    <form action="/login" method="post">
+    <label>Usuario</label>
+    <input type="text" name="usuario" placeholder="Usuario..." required>
+    <label>Password</label>
+    <input type="password" name="contrasenia" placeholder="Password..." required>
+    <input type="submit" value="Login">
+    </form>
+{% endif %}    
+</body>
+</html>

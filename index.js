@@ -98,6 +98,19 @@ app.all('/agregalibro', function (req, res) {
     
     });
 
+app.get('/buscador', (req, res)=>{	  
+    //Obtenemos el valor del término de búsqueda
+    var termino = req.query.busqueda;  
+    // Creamos la expresión regular para poder verificar que contenga el término el nombre en la base de datos. La i significa no sensible a may/min
+    var expresiontermino = new RegExp(termino,"i");
+    MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
+    const dbo = db.db("restapi");    
+    dbo.collection("libros").find({"title":{$regex: expresiontermino }}).toArray(function(err, data) {	      
+        res.render('resultado.html',{logeado:req.session.login, admin:req.session.admin,termino:termino,data:data});
+    });
+});	
+});	
+
 
 app.get('/logout', function (req, res) {
     req.session.destroy();
